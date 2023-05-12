@@ -12,17 +12,30 @@ router.get('/create', (_req, res) => {
     res.render('notes/create');
 });
 
+router.get('/:id', async(req, res) => {
+    const { id } = req.params;
+    const note = await service.getNoteById(id);
+    res.render('notes/detail', { note });
+});
+
 router.get('/edit/:id', async(req, res) => {
     const { id } = req.params;
     const note = await service.getNoteById(id);
     res.render('notes/edit', { note });
 });
 
+
 router.post('', (req, res) => {
 
     const { title, description } = req.body;
     service.insertNode({ title, description });
 
+    res.redirect(301,'/');
+});
+
+router.post('/update', async(req, res) => {
+    const { id, title, description } = req.body;
+    await service.updateNoteById(id, { title, description });
     res.redirect(301,'/');
 });
 

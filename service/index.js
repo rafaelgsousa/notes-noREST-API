@@ -17,6 +17,12 @@ const getNoteById = async (id) => {
     return note;
 }
 
+const updateNoteById = async (id, note) => {
+    const _id = new ObjectId(id);
+    const result = await db.collection('notes').updateOne({ _id }, { $set: note });
+    return result;
+}
+
 const deleteNote = async (id) => {
     const _id = new ObjectId(id);
     const result = await db.collection('notes').deleteOne({ _id });
@@ -27,6 +33,7 @@ const service = {
     insertNode,
     getNotes,
     getNoteById,
+    updateNoteById,
     deleteNote,
 }
 
