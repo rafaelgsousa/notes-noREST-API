@@ -21,7 +21,7 @@ try {
     console.log("Connected to MongoDB");
     app.listen(port, () => console.log(`Listening on port ${port}`));
 } catch (error) {
-    console.log(error);
+    console.error("Error connecting to MongoDB:", error);
 }
 
 
