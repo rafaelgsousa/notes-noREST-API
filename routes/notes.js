@@ -27,7 +27,7 @@ router.get('/edit/:id', async (req, res) => {
 
 router.post('', async (req, res) => {
     const { title, description } = req.body;
-    await service.insertNode({ title, description });
+    await service.insertNote({ title, description });
     res.redirect(301, '/');
 });
 
